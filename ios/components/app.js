@@ -11,25 +11,30 @@ import React, {
 import {connect}            from 'react-redux';
 import * as CounterActions  from "../../actions/counter";
 import MaterialIcon         from 'react-native-vector-icons/MaterialIcons';
-
+import {AdMobBanner}        from 'react-native-admob'
 const select = (state, context)=>{
   return {
     appName: state.settings.appName,
     deviceType:  state.settings.deviceType,
     width: state.settings.width,
+    adMobUnitId: state.settings.adMobUnitId,
     count: state.counter.count
   }
 }
 
 
 class App extends Component {
+  bannerError(err){
+    console.log(err)
+  }
   getStyles(){
     const tablet = this.props.deviceType == "tablet";
     return StyleSheet.create({
       container: {
         flex: 1,
         padding: 20,
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#F5FCFF',
+        position: "relative"
       },
       welcome: {
         fontSize: tablet? 40 : 20,
@@ -62,13 +67,25 @@ class App extends Component {
       },
       buttons: {
         flexDirection: "row",
+      },
+      ad: {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0
       }
     });
   }
   render() {
-    console.log(this.props.width);
+    console.log(this.props);
     console.log(this.props.deviceType);
     const styles = this.getStyles();
+    const adBanner = this.props.adMobUnitId ? <AdMobBanner 
+                                              bannerSize={"smartBannerPortrait"} 
+                                              adUnitID={this.props.adMobUnitId} 
+                                              didFailToRecieveAdWithError={this.bannerError} 
+                                              adViewDidReceiveAd={()=>console.log("received")}
+                                              /> : null;
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>{this.props.appName}</Text>
@@ -82,6 +99,9 @@ class App extends Component {
               <MaterialIcon color="white" size={this.props.deviceType == "tablet" ? 60 : 30} name="add"/>
             </TouchableHighlight>
           </View>
+        </View>
+        <View style={styles.ad}>
+          {adBanner}
         </View>
       </View>
     )
