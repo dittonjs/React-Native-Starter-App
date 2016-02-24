@@ -7,7 +7,7 @@ Setup
 =====
 
 ### Node
-Uses node v4.0
+Uses node v5.1.0
 
 In the project directory run `npm install`
 
@@ -21,9 +21,9 @@ In the project directory run `npm install`
 export NODE_BINARY=<absolute path to your node version>
 ../node_modules/react-native/packager/react-native-xcode.sh
 ```
-You can find the path to your node version 4.0 installation by doing:
+You can find the path to your node version 5.1.0 installation by doing:
 ```
-nvm use 4.0
+nvm use 5.1.0
 which node
 ```
 
@@ -34,22 +34,23 @@ export NODE_BINARY=node
 ```
 
 6. Do `npm start` to start the Javascript Server
-7. Run the app by doing `react-native run-ios` or by opening the ios project in XCode and clicking run.
+7. Run the app by doing `react-native run-ios` or by opening the ios project in XCode and clicking run. 
+
+I prefer to run the project from XCode so you can change the device type with ease. You will also need to have react-native-cli installed globally to run from the command line.
 
 ### Android Setup
 Coming soon.
 
+### Running on iOS device
+1. Open up AppDelegate.m in Xcode.
+2. On line 34 change where to says `localhost` to your ip address.
+3. With your device plugged in select your device from the list of devices next to the play button
+4. Push run.
+
+You will need to go into your settings on your device and allow developer created apps.
+
 Notes
 =====
 
-There is a bug in React Native when imported node modules as a work around import external librarys like this:
-```
-// don't do this
-import _ from "lodash"
 
-// do this
-import _ from "./node_modules/lodash/index.js"
-
-// its annoying I know but it wont work otherwise.
-```
 
