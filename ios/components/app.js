@@ -1,7 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 import React, {
   Platform,
@@ -12,8 +8,9 @@ import React, {
   TouchableHighlight,
   Dimensions
 } from 'react-native';
-import {connect} from 'react-redux';
-import * as CounterActions from "../../actions/counter";
+import {connect}            from 'react-redux';
+import * as CounterActions  from "../../actions/counter";
+import MaterialIcon         from 'react-native-vector-icons/MaterialIcons';
 
 const select = (state, context)=>{
   return {
@@ -45,16 +42,15 @@ class App extends Component {
         marginBottom: 5
       },
       button: {
-        color: "white",
-        backgroundColor: "#05a5d1",
-        padding: tablet? 20 : 10,
-        borderRadius: 4,
+        backgroundColor: "rgb(5,165,209)",
+        padding: tablet? 40 : 20,
+        borderRadius: tablet ? 70 : 35,
         shadowColor: "grey",
         shadowRadius: 5,
-        width: tablet? 200 : 100,
-        textAlign: "center",
+        shadowOffset: {width: 2, height: 2},
+        width: tablet? 140 : 70,
+        height: tablet? 140: 70,
         margin: tablet ? 10 : 5,
-        fontSize: tablet ? 30 : 15
       },
       main: {
         flex: 1,
@@ -79,11 +75,11 @@ class App extends Component {
         <View style={styles.main}>
           <Text style={styles.count}>{this.props.count}</Text>
           <View style={styles.buttons}>
-            <TouchableHighlight underlayColor={"#F5FCFF"} onPress={this.props.increment}>
-              <Text style={styles.button}>Increment</Text>
+            <TouchableHighlight style={styles.button} underlayColor={"rgba(5,165,209,.8)"} onPress={this.props.decrement}>
+              <MaterialIcon color="white" size={this.props.deviceType == "tablet" ? 60 : 30} name="remove"/>
             </TouchableHighlight>
-            <TouchableHighlight underlayColor={"#F5FCFF"} onPress={this.props.decrement}>
-              <Text style={styles.button}>Decrement</Text>
+            <TouchableHighlight style={styles.button} underlayColor={"rgba(5,165,209,.8)"} onPress={this.props.increment}>
+              <MaterialIcon color="white" size={this.props.deviceType == "tablet" ? 60 : 30} name="add"/>
             </TouchableHighlight>
           </View>
         </View>
