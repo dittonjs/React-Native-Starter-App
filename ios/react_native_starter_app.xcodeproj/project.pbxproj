@@ -528,7 +528,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=/Users/josephditton/.nvm/versions/node/v4.0.0/bin/node\n../node_modules/react-native/packager/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=/Users/josephditton/.nvm/versions/node/v5.1.0/bin/node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -627,6 +627,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = react_native_starter_app;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -646,6 +647,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = react_native_starter_app;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
